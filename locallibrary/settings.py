@@ -151,6 +151,10 @@ STATICFILES_DIRS = [
 
 # Static file serving.
 # http://whitenoise.evans.io/en/stable/django.html#django-middleware
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-
+STORAGES = {
+    # ...
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
