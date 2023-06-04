@@ -47,8 +47,14 @@ To get this project up and running locally on your computer:
 > source .my1-venv/bin/activate
 > pip install -r requirements.txt
 
+> python manage.py makemigrations
+> python manage.py migrate
+> python manage.py collectstatic
+> python manage.py createsuperuser
 > python manage.py runserver
 > python manage.py check --deploy
-> python manage.py createsuperuser
 
-> railway run python backend/manage.py createsuperuser
+> railway login --browserless
+> railway link
+> railway run python manage.py createsuperuser
+> railway up
