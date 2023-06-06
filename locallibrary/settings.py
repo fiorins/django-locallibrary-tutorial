@@ -24,13 +24,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECRET_KEY = 'x_5m2n=csr_xhm)%&0hjrrt9gqab^z5-x357x=c%+(1)ru*5&g'
 import os
 
-SECRET_KEY = os.environ.get(
-    "DJANGO_SECRET_KEY", ""
-)
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "my-local&key")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
-DEBUG = os.environ.get("DJANGO_DEBUG", "") != "False"
+DEBUG = int(os.environ.get("DEBUG", default=0))
 
 # Set hosts to allow any app on Railway and the local testing URL
 ALLOWED_HOSTS = [".railway.app", "127.0.0.1"]
