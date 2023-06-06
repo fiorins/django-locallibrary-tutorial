@@ -19,12 +19,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
+# https://djecrety.ir
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'cg#p$g+j9tax!#a3cup@1$8obt2_+&k3q+pmu)5%asj6yjpkag'
+# SECRET_KEY = 'x_5m2n=csr_xhm)%&0hjrrt9gqab^z5-x357x=c%+(1)ru*5&g'
 import os
 
 SECRET_KEY = os.environ.get(
-    "DJANGO_SECRET_KEY", "cg#p$g+j9tax!#a3cup@1$8obt2_+&k3q+pmu)5%asj6yjpkag"
+    "DJANGO_SECRET_KEY", ""
 )
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -118,7 +119,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = "UTC"
+# TIME_ZONE = "UTC"
+TIME_ZONE = "Europe/Rome"
 
 USE_I18N = True
 
@@ -130,13 +132,6 @@ LOGIN_REDIRECT_URL = "/"
 
 # Add to test email:
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-
-
-# Update database configuration from $DATABASE_URL environment variable (if defined)
-import dj_database_url
-
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES["default"].update(db_from_env)
 
 
 # Static files (CSS, JavaScript, Images)
@@ -158,3 +153,10 @@ STORAGES = {
     },
 }
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+# Update database configuration from $DATABASE_URL env (if defined)
+import dj_database_url
+
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES["default"].update(db_from_env)

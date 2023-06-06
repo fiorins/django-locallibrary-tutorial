@@ -43,8 +43,13 @@ To get this project up and running locally on your computer:
 **My commands stack on macOS**:
 "my1-venv" will be the name of my virtual environment
 
-> python3 -m venv .my1-venv
-> source .my1-venv/bin/activate
+> pip list
+> pip freeze
+> which python
+> rm -r .my-venv1
+
+> python3 -m venv .my-venv1
+> source .my-venv1/bin/activate
 > pip install -r requirements.txt
 
 > python manage.py makemigrations
