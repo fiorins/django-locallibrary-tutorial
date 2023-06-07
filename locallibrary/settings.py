@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECRET_KEY = 'x_5m2n=csr_xhm)%&0hjrrt9gqab^z5-x357x=c%+(1)ru*5&g'
 import os
 
-SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "my-local&key")
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
@@ -80,17 +83,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "locallibrary.wsgi.application"
-
-
-# Database
-# https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
-}
 
 
 # Password validation
@@ -153,8 +145,34 @@ STORAGES = {
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
+# Database
+# https://docs.djangoproject.com/en/4.0/ref/settings/#databases
+
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
+    }
+}
 # Update database configuration from $DATABASE_URL env (if defined)
 import dj_database_url
 
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES["default"].update(db_from_env)
+
+# DATABASES = {
+#     "default": dj_database_url.config(
+#         default=os.environ.get("DATABASE_URL"), conn_max_age=1000
+#     )
+# }
+
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql",
+#         "NAME": os.environ.get("PGDATABASE"),
+#         "USER": os.environ.get("PGUSER"),
+#         "PASSWORD": os.environ.get("PGPASSWORD"),
+#         "HOST": os.environ.get("PGHOST"),
+#         "PORT": os.environ.get("PGPORT"),
+#     }
+# }
