@@ -169,9 +169,7 @@ import dj_database_url
 # DATABASES["default"].update(db_from_env)
 
 DATABASES["default"] = dj_database_url.config(
-    default=os.environ.get("DATABASE_URL"),
-    conn_max_age=600,
-    conn_health_checks=True,
+    default=os.environ.get("DATABASE_URL"), conn_max_age=600
 )
 
 # DATABASES = {
