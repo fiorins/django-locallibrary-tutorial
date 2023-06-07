@@ -173,22 +173,12 @@ DATABASES["default"] = dj_database_url.config(
 )
 
 # DATABASES = {
-#     "default": dj_database_url.config(default="postgres://user:pass@localhost/dbname")
+#     "default": dj_database_url.config(
+#         default="postgres://user:pass@localhost/dbname")
 # }
 
 # DATABASES = {
 #     "default": dj_database_url.config(
 #         default=os.environ.get("DATABASE_URL"), conn_max_age=1000
 #     )
-# }
-
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.postgresql",
-#         "NAME": os.environ.get("PGDATABASE"),
-#         "USER": os.environ.get("PGUSER"),
-#         "PASSWORD": os.environ.get("PGPASSWORD"),
-#         "HOST": os.environ.get("PGHOST"),
-#         "PORT": os.environ.get("PGPORT"),
-#     }
 # }
