@@ -12,21 +12,20 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 from dotenv import load_dotenv
+import os
+import dj_database_url
 
 load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+# print("BASE_DIR => " + str(BASE_DIR))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # https://djecrety.ir
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'x_5m2n=csr_xhm)%&0hjrrt9gqab^z5-x357x=c%+(1)ru*5&g'
-import os
-
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -126,6 +125,7 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
+
 # The absolute path to the directory where collectstatic will collect static files for deployment.
 STATIC_ROOT = BASE_DIR / "staticfiles"  # . os.path.join(BASE_DIR, 'staticfiles')
 # The URL to use when referring to static files (where they will be served from)
@@ -142,7 +142,6 @@ STORAGES = {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }
-DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 # Database
@@ -150,27 +149,26 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 DATABASES = {
     "default": {
-        # "ENGINE": "django.db.backends.sqlite3",
-        # "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
         #
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.environ.get("DATABASE_URL"),
-        "USER": os.environ.get("PGUSER"),
-        "PASSWORD": os.environ.get("PGPASSWORD"),
-        "HOST": os.environ.get("PGHOST"),
-        "PORT": os.environ.get("PGPORT"),
+        # "ENGINE": "django.db.backends.postgresql",
+        # "NAME": os.environ.get("DATABASE_URL"),
+        # "USER": os.environ.get("PGUSER"),
+        # "PASSWORD": os.environ.get("PGPASSWORD"),
+        # "HOST": os.environ.get("PGHOST"),
+        # "PORT": os.environ.get("PGPORT"),
     }
 }
 
 # Update database configuration from $DATABASE_URL env (if defined)
-import dj_database_url
 
 # db_from_env = dj_database_url.config(conn_max_age=500)
 # DATABASES["default"].update(db_from_env)
 
-DATABASES["default"] = dj_database_url.config(
-    default=os.environ.get("DATABASE_URL"), conn_max_age=600
-)
+# DATABASES["default"] = dj_database_url.config(
+#     default=os.environ.get("DATABASE_URL"), conn_max_age=600
+# )
 
 # DATABASES = {
 #     "default": dj_database_url.config(
@@ -182,3 +180,9 @@ DATABASES["default"] = dj_database_url.config(
 #         default=os.environ.get("DATABASE_URL"), conn_max_age=1000
 #     )
 # }
+
+
+# Default primary key field type
+# https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
+
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
